@@ -18,19 +18,19 @@ export default function Sectors() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-md">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-md">
           {sectors.map((s, i) => (
             <Reveal key={s.name} delay={i * 50}>
-              <div className="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:border-primary hover:bg-primary/5 transition-all flex items-center gap-md group">
-                <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
+              <div className="h-full bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:border-primary hover:bg-primary/5 transition-all flex items-center gap-md group">
+                <div className="w-14 h-14 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
                   <img
                     src={s.icon}
                     alt=""
-                    className="w-7 h-7 object-contain"
+                    className="w-9 h-9 object-contain"
                     loading="lazy"
                   />
                 </div>
-                <p className="text-label-md font-semibold text-on-background group-hover:text-primary transition-colors">
+                <p className="text-body-lg font-semibold text-on-background group-hover:text-primary transition-colors">
                   {s.name}
                 </p>
               </div>

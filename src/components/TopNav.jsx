@@ -37,7 +37,11 @@ export default function TopNav() {
       >
         <div className="flex justify-between items-center px-gutter py-sm max-w-container-max mx-auto">
           <Link to="/" className="flex items-center">
-            <img src="/images/aattizen.png" alt="Aattizen" className="h-8 w-auto" />
+            <img
+              src="/images/aattizen.png"
+              alt="Aattizen"
+              className="h-8 w-auto rounded-md"
+            />
           </Link>
 
           <div className="flex items-center gap-md">
