@@ -1,0 +1,35 @@
+// Client logos from scraped Wayback assets. Files live in /public/images/.
+export const clients = [
+  { name: "Central Bank", logo: "/images/central-bank-resized.jpg" },
+  { name: "Dream11", logo: "/images/dream11-resized.jpg" },
+  { name: "Hindustan Petroleum", logo: "/images/Hindustan-Petroleum-resized.jpg" },
+  { name: "Ion Exchange", logo: "/images/Ion-Exchange-resized.jpg" },
+  { name: "IRB", logo: "/images/IRB-resized.jpg" },
+  { name: "Kajaria", logo: "/images/Kajaria-resized.jpg" },
+  { name: "K Raheja", logo: "/images/K-Raheja-resized.jpg" },
+  { name: "Meril", logo: "/images/MERIL-resized.jpg" },
+  { name: "MOL Logistics", logo: "/images/MOL-resized.jpg" },
+  { name: "Monginis", logo: "/images/Monginis-resized.jpg" },
+  { name: "MSRDC", logo: "/images/MSRDC-resized.jpg" },
+  { name: "NEL", logo: "/images/NEL-resized.jpg" },
+  { name: "NSE / NSEIT", logo: "/images/NSEIT-resized.jpg" },
+  { name: "Policy Bazaar", logo: "/images/Policy-Bazar-resized.jpg" },
+  { name: "Prism", logo: "/images/prism-resized.jpg" },
+  { name: "Railtel", logo: "/images/Railtel-resized.jpg" },
+  { name: "Raymond", logo: "/images/Raymond-resized.jpg" },
+  { name: "Technocraft", logo: "/images/Technocraft-resized.jpg" },
+  { name: "The Leela", logo: "/images/Theleela-resized.jpg" },
+  { name: "Ubiquiti", logo: "/images/Ubiquiti-resized.jpg" },
+];
+
+export const sectors = [
+  { name: "Healthcare & Life Sciences", icon: "/images/Healthcare-Life-Sciences-icon.svg" },
+  { name: "BPO and Call Center", icon: "/images/BPO-and-Call-Center-icon.svg" },
+  { name: "Insurance", icon: "/images/Insurance-icon.svg" },
+  { name: "Banking & Financial Services", icon: "/images/Banking-and-Financial-Services-icon.svg" },
+  { name: "Manufacturing, Logistics, Energy", icon: "/images/Manufacturing-Logistics-Energy-icon.svg" },
+  { name: "Retail, Travel & Hospitality", icon: "/images/Retail-Travel-and-Hospitality-icon.svg" },
+  { name: "Media & Entertainment", icon: "/images/Info-Media-and-Entertainment-icon.svg" },
+  { name: "Technology & SaaS", icon: "/images/Technology-icon.svg" },
+  { name: "Communications", icon: "/images/Communication-icon.svg" },
+];
