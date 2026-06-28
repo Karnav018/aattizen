@@ -1,11 +1,10 @@
+import AnimatedBackdrop from "./animation/AnimatedBackdrop.jsx";
+
 export default function PageHeader({ eyebrow, title, subtitle, code }) {
   return (
     <section className="bg-on-background text-on-primary pt-32 pb-2xl relative overflow-hidden">
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-primary-container blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-primary blur-3xl" />
-      </div>
-      <div className="relative px-gutter max-w-container-max mx-auto">
+      <AnimatedBackdrop />
+      <div className="relative z-10 px-gutter max-w-container-max mx-auto">
         {eyebrow && (
           <span className="inline-block text-label-sm uppercase tracking-widest text-primary-fixed-dim mb-md">
             — {eyebrow}

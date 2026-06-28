@@ -1,5 +1,6 @@
 import PageHeader from "../components/PageHeader.jsx";
 import Icon from "../components/Icon.jsx";
+import AnimatedBackdrop from "../components/animation/AnimatedBackdrop.jsx";
 import { company } from "../data/site.js";
 
 const channels = [
@@ -68,8 +69,9 @@ export default function Support() {
         </div>
       </section>
 
-      <section className="py-2xl bg-on-background text-on-primary">
-        <div className="px-gutter max-w-container-max mx-auto">
+      <section className="py-2xl bg-on-background text-on-primary relative overflow-hidden">
+        <AnimatedBackdrop />
+        <div className="relative z-10 px-gutter max-w-container-max mx-auto">
           <span className="inline-block text-label-sm uppercase tracking-widest text-primary-fixed-dim mb-md">
             — SLA at a Glance
           </span>

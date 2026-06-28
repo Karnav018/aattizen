@@ -1,4 +1,5 @@
 import { stats } from "../../data/site.js";
+import Counter from "../animation/Counter.jsx";
 
 export default function TrustBar() {
   return (
@@ -10,7 +11,7 @@ export default function TrustBar() {
               <div className="flex items-center gap-sm justify-center md:justify-start mb-xs">
                 {s.pulse && <span className="pulse-dot" />}
                 <span className="text-primary font-bold text-headline-md md:text-headline-lg">
-                  {s.value}
+                  {s.counter ? <Counter {...s.counter} /> : s.value}
                 </span>
               </div>
               <p className="text-on-surface-variant text-label-md uppercase tracking-wider">

@@ -2,12 +2,39 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import PageHeader from "../components/PageHeader.jsx";
 import Icon from "../components/Icon.jsx";
 import Reveal from "../components/Reveal.jsx";
+import Counter from "../components/animation/Counter.jsx";
+import MagneticButton from "../components/animation/MagneticButton.jsx";
+import AnimatedBackdrop from "../components/animation/AnimatedBackdrop.jsx";
 import { services } from "../data/services.js";
+import { imagery } from "../data/imagery.js";
+
+// Parse a brochure-style metric value into numeric pieces for the Counter.
+// "99.5%" → { to: 99.5, decimals: 1, suffix: "%" }
+// "< 4 hrs" → { to: 4, prefix: "< ", suffix: " hrs" }
+// "10G" → { to: 10, suffix: "G" }
+// Non-numeric or symbolic values fall back to plain text.
+function parseMetric(value) {
+  const match = /^(\D*?)(-?\d+(?:\.\d+)?)(.*)$/.exec(value);
+  if (!match) return { plain: value };
+  const [, prefix, num, suffix] = match;
+  const n = parseFloat(num);
+  if (!Number.isFinite(n)) return { plain: value };
+  const decimals = (num.split(".")[1] || "").length;
+  return { to: n, decimals, prefix, suffix };
+}
 
 export default function ServiceDetail() {
   const { slug } = useParams();
   const service = services.find((s) => s.slug === slug);
   if (!service) return <Navigate to="/services" replace />;
+
+  const slugToKey = {
+    "internet-leased-line": "ill",
+    "point-to-point": "p2p",
+    "ddos-protection": "ddos",
+    "sd-wan": "sdwan",
+  };
+  const heroImg = imagery.services[slugToKey[service.slug]] || imagery.services.ill;
 
   return (
     <>
@@ -21,6 +48,12 @@ export default function ServiceDetail() {
       <section className="py-2xl bg-background">
         <div className="px-gutter max-w-container-max mx-auto">
           <div className="rounded-xl bg-on-background text-on-primary p-xl md:p-2xl relative overflow-hidden">
+            {/* telecom backdrop */}
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-20"
+              style={{ backgroundImage: `url(${heroImg})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-on-background via-on-background/85 to-on-background/40" />
             <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary-container/30 blur-3xl pointer-events-none" />
             <div className="relative grid md:grid-cols-[120px_1fr] gap-lg items-center">
               <span className="text-[5rem] leading-none font-bold text-primary-fixed-dim/60">
@@ -47,8 +80,8 @@ export default function ServiceDetail() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-lg">
               {service.capabilities.map((c, i) => (
                 <Reveal key={c.title} delay={i * 60}>
-                  <div className="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant h-full">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-md">
+                  <div className="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant h-full group hover:border-primary transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-md group-hover:bg-primary group-hover:text-on-primary transition-colors">
                       <Icon name={c.icon} filled />
                     </div>
                     <h3 className="text-label-md font-bold mb-sm">{c.title}</h3>
@@ -138,17 +171,32 @@ export default function ServiceDetail() {
 
       <section className="pb-2xl bg-background">
         <div className="px-gutter max-w-container-max mx-auto">
-          <div className="rounded-xl bg-on-background text-on-primary p-xl grid grid-cols-2 md:grid-cols-4 gap-md">
-            {service.metrics.map((m) => (
-              <div key={m.label}>
-                <p className="text-display-md font-bold text-primary-fixed-dim mb-xs">
-                  {m.value}
-                </p>
-                <p className="text-label-sm uppercase tracking-widest text-white/70">
-                  {m.label}
-                </p>
-              </div>
-            ))}
+          <div className="rounded-xl bg-on-background text-on-primary p-xl relative overflow-hidden">
+            <AnimatedBackdrop />
+            <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-md">
+            {service.metrics.map((m) => {
+              const parsed = parseMetric(m.value);
+              return (
+                <div key={m.label}>
+                  <p className="text-display-md font-bold text-primary-fixed-dim mb-xs">
+                    {parsed.plain ? (
+                      parsed.plain
+                    ) : (
+                      <Counter
+                        to={parsed.to}
+                        decimals={parsed.decimals}
+                        prefix={parsed.prefix}
+                        suffix={parsed.suffix}
+                      />
+                    )}
+                  </p>
+                  <p className="text-label-sm uppercase tracking-widest text-white/70">
+                    {m.label}
+                  </p>
+                </div>
+              );
+            })}
+            </div>
           </div>
         </div>
       </section>
@@ -162,18 +210,26 @@ export default function ServiceDetail() {
             </p>
           </div>
           <div className="flex gap-md">
-            <Link
-              to="/contact"
-              className="bg-primary text-on-primary px-lg py-md rounded-lg text-label-md font-semibold hover:bg-primary-container transition-all"
-            >
-              Get a Quote
-            </Link>
-            <Link
-              to="/services"
-              className="border border-primary text-primary px-lg py-md rounded-lg text-label-md font-semibold hover:bg-primary/10 transition-all"
-            >
-              All Services
-            </Link>
+            <MagneticButton>
+              <Link
+                to="/contact"
+                className="group bg-primary text-on-primary px-lg py-md rounded-lg text-label-md font-semibold hover:bg-primary-container transition-all inline-flex items-center gap-sm"
+              >
+                Get a Quote
+                <Icon
+                  name="arrow_forward"
+                  className="!text-base transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link
+                to="/services"
+                className="border border-primary text-primary px-lg py-md rounded-lg text-label-md font-semibold hover:bg-primary/10 transition-all inline-block"
+              >
+                All Services
+              </Link>
+            </MagneticButton>
           </div>
         </div>
       </section>

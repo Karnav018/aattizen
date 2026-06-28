@@ -17,6 +17,11 @@ export const company = {
     contact: "contact@aattizen.net",
     accounts: "account@aattizen.net",
   },
+  whatsapp: {
+    // E.164 without the leading "+". India country code (91) + 10-digit number.
+    number: "919136108668",
+    display: "+91 91361 08668",
+  },
   address: {
     line1: "202, Midas, Sahar Plaza Complex",
     line2: "Behind Kohinoor Hotel, Andheri Kurla Road",
@@ -35,8 +40,23 @@ export const nav = [
 ];
 
 export const stats = [
-  { value: "99.5%", label: "Guaranteed Uptime", pulse: true },
-  { value: "24/7/365", label: "Proactive NOC Support" },
-  { value: "< 4hr", label: "Mean Time to Repair" },
-  { value: "Multi Tier-1", label: "Upstream Redundancy" },
+  {
+    value: "99.5%",
+    label: "Guaranteed Uptime",
+    pulse: true,
+    counter: { to: 99.5, decimals: 1, suffix: "%" },
+  },
+  {
+    value: "24/7/365",
+    label: "Proactive NOC Support",
+  },
+  {
+    value: "< 4hr",
+    label: "Mean Time to Repair",
+    counter: { to: 4, prefix: "< ", suffix: "hr" },
+  },
+  {
+    value: "Multi Tier-1",
+    label: "Upstream Redundancy",
+  },
 ];

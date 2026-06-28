@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../Icon.jsx";
+import MagneticButton from "../animation/MagneticButton.jsx";
+import AnimatedBackdrop from "../animation/AnimatedBackdrop.jsx";
 import { company } from "../../data/site.js";
 
 export default function CTA() {
@@ -7,10 +9,7 @@ export default function CTA() {
     <section className="py-2xl bg-background">
       <div className="px-gutter max-w-container-max mx-auto">
         <div className="relative overflow-hidden rounded-xl bg-on-background text-on-primary p-xl md:p-2xl">
-          <div className="absolute inset-0 opacity-30 pointer-events-none">
-            <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary-container blur-3xl" />
-            <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-primary blur-3xl" />
-          </div>
+          <AnimatedBackdrop />
           <div className="relative grid lg:grid-cols-[1.4fr_1fr] gap-xl items-center">
             <div>
               <span className="inline-block text-label-sm uppercase tracking-widest text-primary-fixed-dim mb-md">
@@ -25,18 +24,26 @@ export default function CTA() {
                 one business day.
               </p>
               <div className="flex flex-wrap gap-md">
-                <Link
-                  to="/contact"
-                  className="bg-primary-container text-on-primary px-xl py-md rounded-lg text-label-md font-semibold hover:bg-primary transition-all inline-flex items-center gap-sm"
-                >
-                  Get a Free Quote <Icon name="arrow_forward" className="!text-base" />
-                </Link>
-                <a
-                  href={`tel:${company.phones.primary.replace(/\s/g, "")}`}
-                  className="border border-white/30 text-white px-xl py-md rounded-lg text-label-md font-semibold hover:bg-white/10 transition-all inline-flex items-center gap-sm"
-                >
-                  <Icon name="call" className="!text-base" /> {company.phones.primary}
-                </a>
+                <MagneticButton>
+                  <Link
+                    to="/contact"
+                    className="group bg-primary-container text-on-primary px-xl py-md rounded-lg text-label-md font-semibold hover:bg-primary transition-all inline-flex items-center gap-sm"
+                  >
+                    Get a Free Quote
+                    <Icon
+                      name="arrow_forward"
+                      className="!text-base transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </Link>
+                </MagneticButton>
+                <MagneticButton>
+                  <a
+                    href={`tel:${company.phones.primary.replace(/\s/g, "")}`}
+                    className="border border-white/30 text-white px-xl py-md rounded-lg text-label-md font-semibold hover:bg-white/10 transition-all inline-flex items-center gap-sm"
+                  >
+                    <Icon name="call" className="!text-base" /> {company.phones.primary}
+                  </a>
+                </MagneticButton>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-md">

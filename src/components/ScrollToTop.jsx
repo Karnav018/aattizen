@@ -1,10 +1,27 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+// On every route change, scroll to top. If the URL has a hash, wait one paint
+// for the section to mount, then smooth-scroll to it.
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
+    if (hash) {
+      const id = hash.slice(1);
+      // The page-transition exit lasts ~300ms; give the new page a moment to mount.
+      const t = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }
+      }, 350);
+      return () => clearTimeout(t);
+    }
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
+  }, [pathname, hash]);
+
   return null;
 }

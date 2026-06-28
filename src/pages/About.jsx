@@ -1,14 +1,19 @@
 import PageHeader from "../components/PageHeader.jsx";
 import Icon from "../components/Icon.jsx";
 import Reveal from "../components/Reveal.jsx";
+import Counter from "../components/animation/Counter.jsx";
 import { whyAattizen } from "../data/services.js";
 import { company } from "../data/site.js";
+import { imagery } from "../data/imagery.js";
 
 const stats = [
-  { value: "99.5%", label: "SLA-backed Uptime" },
-  { value: "24×7×365", label: "NOC & Local Support" },
-  { value: "Multi-Tier 1", label: "Upstream Redundancy" },
-  { value: "1:1", label: "Symmetric Bandwidth" },
+  {
+    label: "SLA-backed Uptime",
+    render: () => <Counter to={99.5} decimals={1} suffix="%" />,
+  },
+  { label: "NOC & Local Support", render: () => "24×7×365" },
+  { label: "Upstream Redundancy", render: () => "Multi Tier-1" },
+  { label: "Symmetric Bandwidth", render: () => "1:1" },
 ];
 
 export default function About() {
@@ -53,7 +58,7 @@ export default function About() {
                   className="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg"
                 >
                   <p className="text-headline-md font-bold text-primary mb-xs">
-                    {s.value}
+                    {s.render()}
                   </p>
                   <p className="text-label-md text-on-surface-variant uppercase tracking-wider">
                     {s.label}
@@ -92,6 +97,28 @@ export default function About() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative h-[40vh] min-h-[280px] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${imagery.dataCentre})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-on-background/85 via-on-background/60 to-on-background/30" />
+        <div className="relative h-full flex items-center px-gutter max-w-container-max mx-auto">
+          <div className="max-w-xl text-on-primary">
+            <span className="inline-block text-label-sm uppercase tracking-widest text-primary-fixed-dim mb-md">
+              — Our Backbone
+            </span>
+            <h2 className="text-headline-lg mb-md">
+              Mumbai-anchored. Built for India's enterprise traffic.
+            </h2>
+            <p className="text-body-md text-white/75">
+              Carrier-grade fibre, Tier-1 upstreams and a 24×7 NOC — engineered to keep
+              your business online when everything else is on fire.
+            </p>
           </div>
         </div>
       </section>

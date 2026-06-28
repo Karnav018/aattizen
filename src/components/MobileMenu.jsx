@@ -163,10 +163,10 @@ export default function MenuOverlay({ open, onClose }) {
                   style={{ transformOrigin: "left top" }}
                 >
                   {n.path.startsWith("/#") ? (
-                    <a
-                      href={n.path.slice(1)}
+                    <Link
+                      to={n.path}
                       onClick={onClose}
-                      className="group flex items-baseline gap-md text-[8.5vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4.5vw] xl:text-[4vw] leading-[1.05] font-extrabold tracking-tight"
+                      className="group flex items-baseline gap-md text-[8.5vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4.5vw] xl:text-[4vw] leading-[1.05] font-extrabold tracking-tight text-white hover:text-primary-fixed-dim transition-colors"
                     >
                       <span
                         ref={(el) => (numbersRef.current[idx] = el)}
@@ -178,7 +178,7 @@ export default function MenuOverlay({ open, onClose }) {
                         {n.label}
                         <span className="absolute left-0 -bottom-1 h-[3px] w-0 group-hover:w-full bg-primary-fixed-dim transition-all duration-500" />
                       </span>
-                    </a>
+                    </Link>
                   ) : (
                     <NavLink
                       to={n.path}
