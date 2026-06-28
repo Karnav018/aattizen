@@ -33,7 +33,7 @@ export default function Hero() {
           style={{
             opacity: overlayOpacity,
             background:
-              "linear-gradient(120deg, rgba(0,24,72,0.92) 0%, rgba(0,61,155,0.55) 55%, rgba(0,82,204,0.2) 100%)",
+              "linear-gradient(120deg, rgba(0,24,72,0.85) 0%, rgba(0,61,155,0.35) 55%, rgba(0,82,204,0.1) 100%)",
           }}
         />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-on-background/70 to-transparent" />

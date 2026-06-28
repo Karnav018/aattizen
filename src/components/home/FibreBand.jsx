@@ -13,7 +13,7 @@ export default function FibreBand() {
   return (
     <section
       ref={ref}
-      className="relative h-[42vh] min-h-[280px] overflow-hidden text-on-primary"
+      className="relative h-[50vh] min-h-[360px] overflow-hidden text-on-primary"
     >
       <motion.div className="absolute inset-0" style={{ y }}>
         <div
@@ -21,18 +21,20 @@ export default function FibreBand() {
           style={{ backgroundImage: `url(${imagery.fibreBand})` }}
         />
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-r from-on-background via-on-background/70 to-on-background/40" />
+      {/* Heavy on the left to ground the text, fades to fully transparent on the right
+          so the mesh sphere stays visible. */}
+      <div className="absolute inset-0 bg-gradient-to-r from-on-background via-on-background/75 to-transparent" />
       <div className="relative h-full flex items-center px-gutter max-w-container-max mx-auto">
-        <div className="max-w-2xl">
+        <div className="max-w-xl">
           <span className="inline-block text-label-sm uppercase tracking-widest text-primary-fixed-dim mb-md">
-            — Our Fibre Backbone
+            — Our Backbone
           </span>
           <h2 className="text-headline-lg mb-md">
-            Own fibre across Mumbai. Direct peering. Tier-1 upstream.
+            Every site, one fabric. Sub-second failover across the mesh.
           </h2>
-          <p className="text-body-md text-white/75 max-w-xl">
-            Unlike resellers, we own and maintain the fibre that carries your traffic
-            — sub-second BGP failover and 24×7 splice-ready field teams.
+          <p className="text-body-md text-white/75 max-w-md">
+            Multi-Tier-1 upstream, diverse-path routing and live link telemetry —
+            engineered so traffic finds the best path long before you notice the worst one.
           </p>
         </div>
       </div>
